@@ -1,0 +1,17 @@
+%obtener las griegas en base al IPC bajando datos de internet
+
+%GRIEGAS 
+% Gamma = blsgamma(Price, Strike, Rate, Time, Volatility, Yield)
+Gamma = blsgamma(StockPrice, StrikePrice, RiskFreeRate, ExpiryTime, Volatility, 0)
+
+% Delta = blsdelta(Price, Strike, Rate, Time, Volatility, Yield)
+[Call_Delta, Put_Delta] = blsdelta(StockPrice, StrikePrice, RiskFreeRate, ExpiryTime, Volatility, 0)
+
+%Theta = blstheta(Price, Strike, Rate, Time, Volatility, Yield)
+[CallTheta, PutTheta] = blstheta(StockPrice, StrikePrice, RiskFreeRate, ExpiryTime, Volatility, 0)
+
+% Vega = blsvega(Price, Strike, Rate, Time, Volatility, Yield)
+Vega = blsvega(StockPrice, StrikePrice, RiskFreeRate, ExpiryTime, Volatility, 0)
+
+%Rho = blsrho(Price, Strike, Rate, Time, Volatility, Yield)
+[CallRho, PutRho] = blsrho(StockPrice, StrikePrice, RiskFreeRate, ExpiryTime, Volatility, 0)
