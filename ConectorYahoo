@@ -1,5 +1,12 @@
 %Modulo para Conectarse a Yahoo y extraer la info
+iter = 0;
 conexion = yahoo; %Para conectarse a yahoo
-x = isconnection(conexion); %Checa si realmente esta conectado True si es asi
-data = fetch(conexion,'^MXX');%Baja una estructura con info
-close(conexion);
+while true
+  x = isconnection(conexion); %Checa si realmente esta conectado True si es asi
+  data = fetch(conexion,'^MXX');%Baja una estructura con info
+  close(conexion);
+  disp(data);
+  iter = iter + 1;
+  disp(iter);
+  pause(1);
+end
