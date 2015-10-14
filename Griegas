@@ -1,0 +1,23 @@
+function Griegas = CalcGriegas( PrecioDeMercado,PrecioStrike,...
+                           TasaLibreRiesgo,TiempoExpiracion,Volatilidad)
+%Funcion que Calcula las Diferentes Griegas
+%   Usando el modelo black scholes calculamos la letras
+%   Delta, Gamma, Theta, Vega y Rho
+%   Usa como Input el PrecioDeMercado, PrecioStrike, TasaLibreRiesgo
+%   TiempoExpiracion, Volatilidad. Asumimos Dividendo = 0
+% Gamma = blsgamma(Price, Strike, Rate, Time, Volatility, Yield)
+
+[Call_Delta, Put_Delta] = blsdelta(PrecioDeMercado,PrecioStrike,...
+                          TasaLibreRiesgo,TiempoExpiracion,Volatilidad,0);
+[CallTheta, PutTheta] = blstheta(PrecioDeMercado,PrecioStrike,...
+                        TasaLibreRiesgo,TiempoExpiracion,Volatilidad,0);
+[CallRho, PutRho] = blsrho(PrecioDeMercado,PrecioStrike,TasaLibreRiesgo,...
+                    TiempoExpiracion,Volatilidad,0) ;
+                
+Vega  = blsvega (PrecioDeMercado,PrecioStrike,TasaLibreRiesgo,...
+                 TiempoExpiracion,Volatilidad,0);
+Gamma = blsgamma(PrecioDeMercado,PrecioStrike,TasaLibreRiesgo,...
+                 TiempoExpiracion,Volatilidad,0);
+             
+Griegas=[Call_Delta,Put_Delta,CallTheta,PutTheta,CallRho,PutRho,Vega,Gamma];
+end
