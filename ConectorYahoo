@@ -3,7 +3,7 @@ clear all;
 clc;
 conexion = yahoo; %Para conectarse a yahoo
 i = 0;
-data = fetch(conexion,'^MXX','Close',now-300,now,'d');
+dataHist = fetch(conexion,'^MXX','Close',now-300,now,'d');
 while true
   x = isconnection(conexion); %Checa si realmente esta conectado True si es asi
   data = fetch(conexion,'^MXX');%Baja una estructura con info
@@ -17,7 +17,7 @@ while true
                            %[CallTheta, PutTheta]
                            %[CallRho, PutRho]
                            %Vega , Gamma
-      Griegas=CalcGriegas(45,40,.05,.55,.1);
+      Griegas=CalcGriegas(data.Last,44000,.05,.55,.1);
       X=char(strcat('Call Delta: ',num2str(Griegas(1))),strcat('Put Delta: ',num2str(Griegas(2))),...
              strcat('Call Theta: ',num2str(Griegas(3))),strcat('Put Theta: ',num2str(Griegas(4))),...
              strcat('Call Rho: ',num2str(Griegas(5))),strcat('Put Rho: ',num2str(Griegas(6))),...
@@ -25,5 +25,7 @@ while true
       h = msgbox(X);
       i=0;
   end 
+  i=i+1;
+end
   i=i+1;
 end
